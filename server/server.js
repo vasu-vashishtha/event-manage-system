@@ -7,14 +7,22 @@ require('dotenv').config();
 const app = express();
 
 const allowedOrigins = [
-  'http://localhost:5173', // local dev
-  'https://event-manage-system-bqpuxiqd6-vasuvashishthas-projects.vercel.app/' // vercel frontend
+  'http://localhost:5173',
+  'https://event-manage-system-bqpuxiqd6-vasuvashishthas-projects.vercel.app'
 ];
 
 app.use(cors({
-  origin: allowedOrigins, 
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 }));
+
+app.options('*', cors()); // Handle preflight
 
 app.use(express.json());
 
