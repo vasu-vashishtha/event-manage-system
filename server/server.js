@@ -5,10 +5,17 @@ require('dotenv').config();
 
 
 const app = express();
+
+const allowedOrigins = [
+  'http://localhost:5173', // local dev
+  'https://event-manage-system-bqpuxiqd6-vasuvashishthas-projects.vercel.app/' // vercel frontend
+];
+
 app.use(cors({
-  origin: ['http://localhost:5173'], 
+  origin: allowedOrigins, 
   credentials: true,
 }));
+
 app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
