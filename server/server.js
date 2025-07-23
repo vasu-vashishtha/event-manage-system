@@ -8,7 +8,7 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://event-manage-system-bqpuxiqd6-vasuvashishthas-projects.vercel.app'
+  'https://event-manage-system.vercel.app'
 ];
 
 app.use(cors({
